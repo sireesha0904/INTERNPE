@@ -10,15 +10,14 @@
 <body>
   <div class="container">
     <h1><i class="fas fa-calculator"></i> Smart Calculator</h1>
-
     <div class="mode-toggle">
-      <label class="switch">
-        <input type="checkbox" id="modeSwitcher" onchange="toggleMode()" />
-        <span class="slider"></span>
-      </label>
-      <span class="mode-label">Scientific Mode</span>
-    </div>
-
+        <label class="switch">
+          <input type="checkbox" id="modeSwitcher" aria-label="Toggle Scientific Mode" onchange="toggleMode()" />
+          <span class="slider"></span>
+        </label>
+        <span class="mode-label">Scientific Mode</span>
+      </div>
+      
     <div class="calculator" id="calculatorBox">
       <div class="display">
         <div id="liveResult" class="live-result">0</div>
@@ -68,9 +67,6 @@
         <button onclick="appendValue('**')">xʸ</button>
       </div>
     </div>
-
-   
-      
   </div>
 
   <script src="script.js"></script>
