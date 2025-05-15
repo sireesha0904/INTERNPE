@@ -1,0 +1,171 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background: linear-gradient(to right, #141e30, #243b55);
+  font-family: 'Segoe UI', sans-serif;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  text-align: center;
+  padding: 20px;
+}
+
+.container {
+  max-width: 430px;
+  width: 100%;
+  background: #1f1f1f;
+  padding: 25px;
+  border-radius: 20px;
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.6);
+}
+
+h1 {
+  font-size: 2rem;
+  margin-bottom: 20px;
+}
+
+.mode-toggle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.mode-label {
+  margin-left: 10px;
+  font-size: 1rem;
+}
+
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 50px;
+  height: 24px;
+}
+
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  background-color: #ccc;
+  border-radius: 34px;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  transition: 0.4s;
+}
+
+.slider:before {
+  content: "";
+  position: absolute;
+  height: 18px;
+  width: 18px;
+  left: 3px;
+  bottom: 3px;
+  background-color: white;
+  border-radius: 50%;
+  transition: 0.4s;
+}
+
+input:checked + .slider {
+  background-color: #9b59b6;
+}
+
+input:checked + .slider:before {
+  transform: translateX(26px);
+}
+
+.calculator {
+  background: #292929;
+  border-radius: 15px;
+  padding: 15px;
+  transition: all 0.3s ease;
+}
+
+.display {
+  background: #111;
+  padding: 10px 15px;
+  border-radius: 10px;
+  margin-bottom: 15px;
+  text-align: right;
+}
+
+.live-result {
+  font-size: 1rem;
+  color: #9acd32;
+  min-height: 20px;
+}
+
+.expression {
+  font-size: 1.8rem;
+  color: #fff;
+  word-wrap: break-word;
+}
+
+.buttons {
+  display: grid;
+  gap: 10px;
+  margin-bottom: 15px;
+}
+
+.simple {
+  grid-template-columns: repeat(4, 1fr);
+}
+
+.scientific {
+  grid-template-columns: repeat(4, 1fr);
+  padding: 10px;
+  background: #1e1e2f;
+  border-radius: 12px;
+  animation: fadeIn 0.4s ease-in-out;
+}
+
+button {
+  padding: 15px;
+  border: none;
+  border-radius: 10px;
+  background: #444;
+  color: white;
+  font-size: 1.1rem;
+  transition: 0.3s;
+  cursor: pointer;
+}
+
+button:hover {
+  background: #8e44ad;
+}
+
+button.equal {
+  background: #00c853;
+}
+
+button.equal:hover {
+  background: #00b342;
+}
+
+.hidden {
+  display: none;
+}
+
+footer {
+  margin-top: 15px;
+  font-size: 0.9rem;
+  color: #bbb;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}

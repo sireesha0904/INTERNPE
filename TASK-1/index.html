@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Calculator by Sireesha</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="container">
+    <h1><i class="fas fa-calculator"></i> Smart Calculator</h1>
+
+    <div class="mode-toggle">
+      <label class="switch">
+        <input type="checkbox" id="modeSwitcher" onchange="toggleMode()" />
+        <span class="slider"></span>
+      </label>
+      <span class="mode-label">Scientific Mode</span>
+    </div>
+
+    <div class="calculator" id="calculatorBox">
+      <div class="display">
+        <div id="liveResult" class="live-result">0</div>
+        <div id="expression" class="expression">0</div>
+      </div>
+
+      <div class="buttons simple" id="simpleButtons">
+        <button onclick="clearDisplay()">C</button>
+        <button onclick="deleteLast()">DEL</button>
+        <button onclick="appendValue('%')">%</button>
+        <button onclick="appendValue('/')">÷</button>
+
+        <button onclick="appendValue('7')">7</button>
+        <button onclick="appendValue('8')">8</button>
+        <button onclick="appendValue('9')">9</button>
+        <button onclick="appendValue('*')">×</button>
+
+        <button onclick="appendValue('4')">4</button>
+        <button onclick="appendValue('5')">5</button>
+        <button onclick="appendValue('6')">6</button>
+        <button onclick="appendValue('-')">−</button>
+
+        <button onclick="appendValue('1')">1</button>
+        <button onclick="appendValue('2')">2</button>
+        <button onclick="appendValue('3')">3</button>
+        <button onclick="appendValue('+')">+</button>
+
+        <button onclick="appendValue('0')">0</button>
+        <button onclick="appendValue('.')">.</button>
+        <button class="equal" onclick="calculate()">=</button>
+      </div>
+
+      <div class="buttons scientific hidden" id="scientificButtons">
+        <button onclick="appendValue('Math.PI')">π</button>
+        <button onclick="appendValue('Math.E')">e</button>
+        <button onclick="appendValue('Math.sqrt(')">√</button>
+        <button onclick="appendValue('**2')">x²</button>
+
+        <button onclick="appendValue('Math.sin(')">sin</button>
+        <button onclick="appendValue('Math.cos(')">cos</button>
+        <button onclick="appendValue('Math.tan(')">tan</button>
+        <button onclick="appendValue('Math.log10(')">log</button>
+
+        <button onclick="appendValue('Math.log(')">ln</button>
+        <button onclick="appendValue('(')">(</button>
+        <button onclick="appendValue(')')">)</button>
+        <button onclick="appendValue('**')">xʸ</button>
+      </div>
+    </div>
+
+    <footer>
+      <p>🛠️ Made with ❤️ by <strong>Sireesha</strong></p>
+    </footer>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
