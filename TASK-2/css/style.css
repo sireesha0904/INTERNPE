@@ -1,79 +1,55 @@
-/* General Navbar Styles */
-.navbar {
-  background-color: #fff;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-}
-
-.navbar-light .navbar-nav .nav-link {
-  color: #555;
-}
-
-.navbar-light .navbar-nav .nav-link:hover {
-  color: #007bff;
-}
-
-.navbar-toggler-icon {
-  background-color: #007bff;
-}
-
-/* Light Theme (default) */
-body {
-  background-color: #f8f9fa;
-  color: #212529;
-}
-
-a {
-  text-decoration: none;
-  color: inherit;
-}
-
-/* Dark Mode Styles */
-body.dark-mode {
-  background-color: #121212;
-  color: #e0e0e0;
-}
-
-body.dark-mode .navbar {
-  background-color: #333;
-}
-
-body.dark-mode .navbar-light .navbar-nav .nav-link {
-  color: #e0e0e0;
-}
-
-body.dark-mode .navbar-light .navbar-nav .nav-link:hover {
-  color: #00d0ff;
-}
-
-body.dark-mode #theme-toggle-btn {
-  color: #fff;
-}
-
-/* Theme Toggle Button (for navbar) */
-#theme-toggle-btn {
-  cursor: pointer;
-  padding: 10px;
-  border: none;
-  background: transparent;
-  color: #333;
-  font-size: 18px;
-}
-
-#theme-toggle-btn:hover {
-  color: #007bff;
-}
-
-#theme-toggle-btn i {
-  font-size: 24px;
-}
-
-/* For smaller screens (Mobile) */
-@media (max-width: 767px) {
-  .navbar .navbar-nav {
-    text-align: center;
+/* Footer Styles */
+.footer {
+    background-color: #343a40; /* Dark background */
+    color: white;
+    padding-top: 40px;
+    padding-bottom: 40px;
   }
-
-  #theme-toggle-btn {
-    font-size: 1.8rem;
+  
+  .footer h5 {
+    font-size: 1.25rem;
+    margin-bottom: 15px;
+    font-weight: bold;
   }
-}
+  
+  .footer p {
+    margin-bottom: 10px;
+  }
+  
+  .footer a {
+    text-decoration: none;
+    color: white;
+    transition: color 0.3s ease;
+  }
+  
+  .footer a:hover {
+    color: #007bff; /* Hover color */
+  }
+  
+  .footer .social-icons a {
+    font-size: 1.5rem;
+    transition: transform 0.3s ease;
+  }
+  
+  .footer .social-icons a:hover {
+    transform: scale(1.2); /* Slight zoom on hover */
+  }
+  
+  .footer .payment-icons img {
+    margin-right: 15px;
+    margin-top: 10px;
+  }
+  
+  @media (max-width: 767px) {
+    .footer .row {
+      text-align: center;
+    }
+    .footer .social-icons a {
+      font-size: 2rem;
+      margin-right: 15px;
+    }
+    .footer .payment-icons img {
+      margin-top: 5px;
+    }
+  }
+  

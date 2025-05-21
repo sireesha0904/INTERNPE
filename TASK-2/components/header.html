@@ -13,31 +13,31 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
 </head>
 <!-- components/header.html -->
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <div class="container-fluid">
-      <a class="navbar-brand" href="index.html">MyShop</a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-              data-bs-target="#navbarNav" aria-controls="navbarNav"
-              aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
+<nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="index.html">MyShop</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+            data-bs-target="#navbarNav" aria-controls="navbarNav"
+            aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+      <ul class="navbar-nav">
+        <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+        <li class="nav-item"><a class="nav-link" href="products.html">Products</a></li>
+        <li class="nav-item"><a class="nav-link" href="wishlist.html">Wishlist</a></li>
+        <li class="nav-item"><a class="nav-link" href="cart.html">Cart</a></li>
+        <li class="nav-item"><a class="nav-link" href="login.html" id="loginLink">Login</a></li>
+      </ul>
+
+      <!-- Theme toggle button -->
+      <button id="theme-toggle-btn" class="btn">
+        <i id="theme-icon" class="bi bi-moon-stars"></i>
       </button>
-  
-      <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
-        <ul class="navbar-nav">
-          <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
-          <li class="nav-item"><a class="nav-link" href="products.html">Products</a></li>
-          <li class="nav-item"><a class="nav-link" href="wishlist.html">Wishlist</a></li>
-          <li class="nav-item"><a class="nav-link" href="cart.html">Cart</a></li>
-          <li class="nav-item"><a class="nav-link" href="login.html" id="loginLink">Login</a></li>
-        </ul>
-        <!-- Theme toggle button -->
-        <button id="theme-toggle-btn" class="btn">
-          <i id="theme-icon" class="bi bi-moon-stars"></i> <!-- Moon Icon -->
-        </button>
-      </div>
     </div>
-  </nav>
-  
-  <!-- Include JavaScript File -->
-  <script src="js/theme-toggle.js"></script>
-  
+  </div>
+</nav>
+
+<!-- Include JavaScript File -->
+<script src="js/theme-toggle.js"></script>

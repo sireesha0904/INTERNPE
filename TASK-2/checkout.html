@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Checkout</title>
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"/>
+  <!-- Bootstrap Icons -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="./css/checkout.css">
+</head>
+<body>
+
+  <!-- HEADER PLACEHOLDER -->
+  <div id="header-placeholder"></div>
+
+  <script>
+    fetch("components/header.html")
+      .then(response => response.text())
+      .then(data => {
+        document.getElementById("header-placeholder").innerHTML = data;
+      })
+      .catch(error => console.error("Header load error:", error));
+  </script>
+
+  <!-- Checkout Page Content -->
+  <div class="container checkout-container">
+    <h2 class="text-center mb-4">Checkout</h2>
+
+    <!-- Billing Information -->
+    <div class="billing-info">
+      <h3>Billing Information</h3>
+      <form id="billing-form">
+        <div class="row">
+          <div class="col-md-6">
+            <label for="first-name" class="form-label">First Name</label>
+            <input type="text" id="first-name" class="form-control" required>
+          </div>
+          <div class="col-md-6">
+            <label for="last-name" class="form-label">Last Name</label>
+            <input type="text" id="last-name" class="form-control" required>
+          </div>
+          <div class="col-md-12">
+            <label for="address" class="form-label">Address</label>
+            <input type="text" id="address" class="form-control" required>
+          </div>
+          <div class="col-md-6">
+            <label for="city" class="form-label">City</label>
+            <input type="text" id="city" class="form-control" required>
+          </div>
+          <div class="col-md-6">
+            <label for="zip" class="form-label">ZIP Code</label>
+            <input type="text" id="zip" class="form-control" required>
+          </div>
+        </div>
+    </div>
+
+    <!-- Payment Information -->
+    <div class="payment-info mt-5">
+      <h3>Payment Information</h3>
+      <form id="payment-form">
+        <div class="row">
+          <div class="col-md-6">
+            <label for="card-name" class="form-label">Cardholder's Name</label>
+            <input type="text" id="card-name" class="form-control" required>
+          </div>
+          <div class="col-md-6">
+            <label for="card-number" class="form-label">Card Number</label>
+            <input type="text" id="card-number" class="form-control" required>
+          </div>
+          <div class="col-md-6">
+            <label for="expiry-date" class="form-label">Expiry Date</label>
+            <input type="month" id="expiry-date" class="form-control" required>
+          </div>
+          <div class="col-md-6">
+            <label for="cvv" class="form-label">CVV</label>
+            <input type="text" id="cvv" class="form-control" required>
+          </div>
+        </div>
+    </div>
+
+    <!-- Summary and Total -->
+    <div class="checkout-summary mt-5">
+      <h3>Order Summary</h3>
+      <ul id="cart-summary" class="list-group">
+        <!-- Dynamically populated cart items will go here -->
+      </ul>
+      <div class="total-price">
+        <h4>Total: <span id="checkout-total">$0.00</span></h4>
+      </div>
+      <button type="submit" class="btn btn-success w-100">Place Order</button>
+    </div>
+  </div>
+
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+  <!-- Optional Icons -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.js"></script>
+
+  <!-- Custom JS -->
+  <script src="./js/checkout.js"></script>
+  
+</body>
+</html>

@@ -1,32 +1,30 @@
-document.addEventListener("DOMContentLoaded", () => {
-  const toggleBtn = document.getElementById("theme-toggle");
-  const iconSun = document.querySelector(".icon-sun");
-  const iconMoon = document.querySelector(".icon-moon");
+// main.js
 
-  // Initialize mode based on saved preference or system
-  if (
-    localStorage.theme === "dark" ||
-    (!("theme" in localStorage) &&
-      window.matchMedia("(prefers-color-scheme: dark)").matches)
-  ) {
-    document.documentElement.classList.add("dark");
-    iconSun.classList.remove("hidden");
-    iconMoon.classList.add("hidden");
-  } else {
-    document.documentElement.classList.remove("dark");
-    iconSun.classList.add("hidden");
-    iconMoon.classList.remove("hidden");
-  }
+// Event listener for adding items to the cart
+document.querySelectorAll(".btn-add-to-cart").forEach((button) => {
+  button.addEventListener("click", function (event) {
+    const card = event.target.closest(".card");
+    const title = card.querySelector(".card-title").textContent;
+    const price = card.querySelector(".price").textContent;
+    const image = card.querySelector(".card-img-top").src;
 
-  toggleBtn.addEventListener("click", () => {
-    iconSun.classList.toggle("hidden");
-    iconMoon.classList.toggle("hidden");
-    if (document.documentElement.classList.contains("dark")) {
-      document.documentElement.classList.remove("dark");
-      localStorage.theme = "light";
-    } else {
-      document.documentElement.classList.add("dark");
-      localStorage.theme = "dark";
-    }
+    // Create an item object
+    const item = {
+      title: title,
+      price: price,
+      image: image,
+    };
+
+    // Get cart from localStorage or initialize as empty array
+    let cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+    // Add the new item to the cart
+    cart.push(item);
+
+    // Save updated cart to localStorage
+    localStorage.setItem("cart", JSON.stringify(cart));
+
+    // Optionally, alert the user
+    alert(`${title} has been added to your cart!`);
   });
 });
