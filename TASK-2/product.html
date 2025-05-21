@@ -1,20 +1,90 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Products - ShopEase</title>
-  <link rel="stylesheet" href="/TASK-2/css/style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>ShopEase - Products</title>
+  <link rel="stylesheet" href="/TASK-2/css/style.css" />
 </head>
 <body>
   <header>
-    <h1>Products</h1>
-    <a href="cart.html">View Cart</a>
+    <div class="container">
+      <div class="logo">ShopEase</div>
+      <nav>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="product.html" class="active-link">Products</a></li>
+          <li><a href="cart.html">Cart</a></li>
+          <li><a href="checkout.html">Checkout</a></li>
+        </ul>
+      </nav>
+    </div>
   </header>
 
-  <main>
-    <section id="product-list"></section>
-  </main>
+  <section class="products-page container">
+    <h1>All Products</h1>
+    <div class="filters">
+      <label for="category">Filter by Category:</label>
+      <select id="category" name="category">
+        <option value="all" selected>All</option>
+        <option value="clothing">Clothing</option>
+        <option value="electronics">Electronics</option>
+        <option value="accessories">Accessories</option>
+      </select>
+    </div>
 
+    <div class="products-grid">
+      <!-- Sample product cards -->
+      <div class="product-card">
+        <img src="https://via.placeholder.com/250x250?text=T-Shirt" alt="T-Shirt" />
+        <h3>Classic T-Shirt</h3>
+        <p>$25.00</p>
+        <button class="btn-primary">Add to Cart</button>
+      </div>
+      <div class="product-card">
+        <img src="https://via.placeholder.com/250x250?text=Headphones" alt="Headphones" />
+        <h3>Wireless Headphones</h3>
+        <p>$99.99</p>
+        <button class="btn-primary">Add to Cart</button>
+      </div>
+      <div class="product-card">
+        <img src="https://via.placeholder.com/250x250?text=Watch" alt="Watch" />
+        <h3>Stylish Watch</h3>
+        <p>$149.00</p>
+        <button class="btn-primary">Add to Cart</button>
+      </div>
+      <div class="product-card">
+        <img src="https://via.placeholder.com/250x250?text=Backpack" alt="Backpack" />
+        <h3>Durable Backpack</h3>
+        <p>$59.99</p>
+        <button class="btn-primary">Add to Cart</button>
+      </div>
+      <div class="product-card">
+        <img src="https://via.placeholder.com/250x250?text=Sneakers" alt="Sneakers" />
+        <h3>Running Sneakers</h3>
+        <p>$79.99</p>
+        <button class="btn-primary">Add to Cart</button>
+      </div>
+      <div class="product-card">
+        <img src="https://via.placeholder.com/250x250?text=Sunglasses" alt="Sunglasses" />
+        <h3>Fashion Sunglasses</h3>
+        <p>$45.00</p>
+        <button class="btn-primary">Add to Cart</button>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container footer-content">
+      <p>&copy; 2025 ShopEase. All rights reserved.</p>
+      <div class="social-links">
+        <a href="#" aria-label="Facebook">Fb</a>
+        <a href="#" aria-label="Twitter">Tw</a>
+        <a href="#" aria-label="Instagram">Ig</a>
+      </div>
+    </div>
+  </footer>
+  <script src="/TASK-2/js/main.js"></script>
   <script src="/TASK-2/js/product.js"></script>
 </body>
 </html>

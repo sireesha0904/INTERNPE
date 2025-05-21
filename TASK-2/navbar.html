@@ -1,0 +1,61 @@
+<!-- Add this in your index.html <head> for Tailwind + FontAwesome -->
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@3.3.2/dist/tailwind.min.css" rel="stylesheet" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    
+    <header class="bg-gradient-to-r from-purple-700 to-indigo-600 text-white shadow-lg">
+      <div class="container mx-auto flex items-center justify-between p-4">
+        <div
+          class="text-3xl font-bold cursor-pointer hover:text-yellow-300 transition"
+          onclick="location.href='index.html'"
+        >
+          ShopEase
+        </div>
+    
+        <nav>
+          <ul class="flex space-x-8 text-lg font-medium">
+            <li>
+              <a
+                href="index.html"
+                class="hover:text-yellow-300 transition duration-300"
+                >Home</a
+              >
+            </li>
+            <li>
+              <a
+                href="product.html"
+                class="hover:text-yellow-300 transition duration-300"
+                >Products</a
+              >
+            </li>
+            <li>
+              <a
+                href="cart.html"
+                class="hover:text-yellow-300 transition duration-300"
+                >Cart</a
+              >
+            </li>
+            <li>
+              <a
+                href="checkout.html"
+                class="hover:text-yellow-300 transition duration-300"
+                >Checkout</a
+              >
+            </li>
+          </ul>
+        </nav>
+    
+        <button
+          id="theme-toggle"
+          aria-label="Toggle Dark/Light Mode"
+          class="text-yellow-300 hover:text-yellow-400 focus:outline-none focus:ring-2 focus:ring-yellow-400 rounded transition"
+        >
+          <!-- Font Awesome Icons -->
+          <i class="fas fa-sun text-2xl icon-sun hidden"></i>
+          <i class="fas fa-moon text-2xl icon-moon"></i>
+        </button>
+      </div>
+    </header>
+    
