@@ -1,0 +1,43 @@
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MyShop</title>
+    
+    <!-- Link to External CSS (style.css) -->
+    <link rel="stylesheet" href="css/style.css">
+    
+    <!-- Optional: Link to Bootstrap CSS (if not using CDN) -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- Link to Bootstrap Icons for theme toggle (if needed) -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+</head>
+<!-- components/header.html -->
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="index.html">MyShop</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+              data-bs-target="#navbarNav" aria-controls="navbarNav"
+              aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+  
+      <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+        <ul class="navbar-nav">
+          <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+          <li class="nav-item"><a class="nav-link" href="products.html">Products</a></li>
+          <li class="nav-item"><a class="nav-link" href="wishlist.html">Wishlist</a></li>
+          <li class="nav-item"><a class="nav-link" href="cart.html">Cart</a></li>
+          <li class="nav-item"><a class="nav-link" href="login.html" id="loginLink">Login</a></li>
+        </ul>
+        <!-- Theme toggle button -->
+        <button id="theme-toggle-btn" class="btn">
+          <i id="theme-icon" class="bi bi-moon-stars"></i> <!-- Moon Icon -->
+        </button>
+      </div>
+    </div>
+  </nav>
+  
+  <!-- Include JavaScript File -->
+  <script src="js/theme-toggle.js"></script>
+  

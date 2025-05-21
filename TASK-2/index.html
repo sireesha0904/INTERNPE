@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>E-Commerce Homepage</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <!-- Hero Section -->
+    <section class="hero bg-primary text-white text-center py-5" style="background-image: url('https://source.unsplash.com/1600x900/?ecommerce,shopping,store'); background-size: cover; background-position: center;">
+        <div class="container">
+            <h1 class="display-4">Welcome to Our E-Commerce Store!</h1>
+            <p class="lead">Shop the latest trends in fashion, electronics, and more!</p>
+            <a href="#featured-products" class="btn btn-light btn-lg">Shop Now</a>
+        </div>
+    </section>
+    
+
+    <!-- Featured Products -->
+    <section id="featured-products" class="py-5">
+        <div class="container">
+            <h2 class="text-center mb-4">Featured Products</h2>
+            <div class="row">
+                <!-- Product Card 1 -->
+                <div class="col-md-3">
+                    <div class="card">
+                        <img src="https://source.unsplash.com/400x300/?laptop" class="card-img-top" alt="Product 1">
+                        <div class="card-body">
+                            <h5 class="card-title">Laptop</h5>
+                            <p class="card-text">$999.99</p>
+                            <a href="#" class="btn btn-primary">Add to Cart</a>
+                        </div>
+                    </div>
+                </div>
+                <!-- Product Card 2 -->
+                <div class="col-md-3">
+                    <div class="card">
+                        <img src="https://source.unsplash.com/400x300/?watch" class="card-img-top" alt="Product 2">
+                        <div class="card-body">
+                            <h5 class="card-title">Smart Watch</h5>
+                            <p class="card-text">$199.99</p>
+                            <a href="#" class="btn btn-primary">Add to Cart</a>
+                        </div>
+                    </div>
+                </div>
+                <!-- Product Card 3 -->
+                <div class="col-md-3">
+                    <div class="card">
+                        <img src="https://source.unsplash.com/400x300/?phone" class="card-img-top" alt="Product 3">
+                        <div class="card-body">
+                            <h5 class="card-title">Smartphone</h5>
+                            <p class="card-text">$799.99</p>
+                            <a href="#" class="btn btn-primary">Add to Cart</a>
+                        </div>
+                    </div>
+                </div>
+                <!-- Product Card 4 -->
+                <div class="col-md-3">
+                    <div class="card">
+                        <img src="https://source.unsplash.com/400x300/?headphones" class="card-img-top" alt="Product 4">
+                        <div class="card-body">
+                            <h5 class="card-title">Wireless Headphones</h5>
+                            <p class="card-text">$149.99</p>
+                            <a href="#" class="btn btn-primary">Add to Cart</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Promotions/Sales Section -->
+    <section class="promotions bg-secondary text-white py-5">
+        <div class="container">
+            <h2 class="text-center mb-4">Limited Time Offers</h2>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="card bg-light">
+                        <div class="card-body">
+                            <h5 class="card-title">50% OFF on Electronics</h5>
+                            <p class="card-text">Huge discounts on all electronics. Don't miss out!</p>
+                            <a href="#" class="btn btn-dark">Shop Now</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="card bg-light">
+                        <div class="card-body">
+                            <h5 class="card-title">Buy 1 Get 1 Free on Fashion</h5>
+                            <p class="card-text">Grab this exclusive offer on all fashion items!</p>
+                            <a href="#" class="btn btn-dark">Shop Now</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Categories Section -->
+    <section class="categories py-5">
+        <div class="container">
+            <h2 class="text-center mb-4">Shop by Categories</h2>
+            <div class="row">
+                <div class="col-md-3">
+                    <div class="card">
+                        <i class="bi bi-laptop text-primary fs-1 p-4"></i>
+                        <div class="card-body text-center">
+                            <h5 class="card-title">Electronics</h5>
+                            <a href="#" class="btn btn-link">Browse</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="card">
+                        <i class="bi bi-shirt text-success fs-1 p-4"></i>
+                        <div class="card-body text-center">
+                            <h5 class="card-title">Fashion</h5>
+                            <a href="#" class="btn btn-link">Browse</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="card">
+                        <i class="bi bi-house-door text-danger fs-1 p-4"></i>
+                        <div class="card-body text-center">
+                            <h5 class="card-title">Home & Living</h5>
+                            <a href="#" class="btn btn-link">Browse</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="card">
+                        <i class="bi bi-basket text-warning fs-1 p-4"></i>
+                        <div class="card-body text-center">
+                            <h5 class="card-title">Groceries</h5>
+                            <a href="#" class="btn btn-link">Browse</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Optional Icons -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.js"></script>
+</body>
+</html>
