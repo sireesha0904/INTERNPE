@@ -1,0 +1,301 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
+
+/* Background: smooth dark gradient + gentle subtle glow bubbles */
+body {
+  margin: 0;
+  min-height: 100vh;
+  font-family: 'Poppins', sans-serif;
+  background: linear-gradient(135deg, #0d1117, #161b22);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  color: #e1e4e8;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Soft glowing bubbles animation */
+body::before {
+  content: "";
+  position: fixed;
+  top: -150px;
+  left: -150px;
+  width: 600px;
+  height: 600px;
+  background: radial-gradient(circle, rgba(0, 255, 255, 0.15) 0%, transparent 70%);
+  filter: blur(100px);
+  animation: floatBubble 15s ease-in-out infinite alternate;
+  z-index: -2;
+}
+
+body::after {
+  content: "";
+  position: fixed;
+  bottom: -150px;
+  right: -150px;
+  width: 700px;
+  height: 700px;
+  background: radial-gradient(circle, rgba(255, 0, 204, 0.15) 0%, transparent 70%);
+  filter: blur(120px);
+  animation: floatBubbleReverse 18s ease-in-out infinite alternate;
+  z-index: -2;
+}
+
+@keyframes floatBubble {
+  0% { transform: translate(0, 0); }
+  100% { transform: translate(40px, 40px); }
+}
+
+@keyframes floatBubbleReverse {
+  0% { transform: translate(0, 0); }
+  100% { transform: translate(-40px, -40px); }
+}
+
+/* Glass container with soft shadows & blur */
+.todo-container {
+  background: rgba(20, 25, 32, 0.75);
+  border-radius: 28px;
+  backdrop-filter: blur(15px);
+  box-shadow:
+    0 8px 24px rgba(0, 0, 0, 0.4);
+  width: 100%;
+  max-width: 480px;
+  padding: 40px 36px;
+  display: flex;
+  flex-direction: column;
+  gap: 36px;
+  user-select: none;
+  border: 1.5px solid rgba(255, 255, 255, 0.12);
+  color: #e1e4e8;
+}
+
+/* Header */
+.todo-container h2 {
+  font-weight: 700;
+  font-size: 2.6rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  color: #58a6ff;
+  text-shadow: 0 0 6px rgba(88, 166, 255, 0.6);
+}
+
+.todo-container h2 i {
+  font-size: 3rem;
+  color: #58a6ff;
+  filter: drop-shadow(0 0 6px #58a6ff88);
+}
+
+/* Input Section */
+.input-section {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.input-section input[type="text"],
+.input-section input[type="datetime-local"] {
+  flex-grow: 1;
+  min-width: 160px;
+  padding: 16px 20px;
+  font-size: 1.2rem;
+  border-radius: 16px;
+  border: none;
+  outline: none;
+  background: rgba(255 255 255 / 0.1);
+  color: #cdd9e5;
+  box-shadow: inset 0 0 12px rgba(88, 166, 255, 0.15);
+  transition: background 0.3s ease;
+  font-weight: 600;
+  font-family: 'Poppins', sans-serif;
+  cursor: text;
+}
+
+.input-section input[type="text"]::placeholder,
+.input-section input[type="datetime-local"]::placeholder {
+  color: #8b949e;
+  font-weight: 400;
+}
+
+.input-section input[type="text"]:focus,
+.input-section input[type="datetime-local"]:focus {
+  background: rgba(255 255 255 / 0.18);
+  box-shadow: inset 0 0 18px #58a6ffbb;
+  color: #e1e4e8;
+}
+
+.input-section input[type="datetime-local"]::-webkit-calendar-picker-indicator {
+  filter: invert(0.8);
+  cursor: pointer;
+}
+
+/* Button */
+.input-section button {
+  background: #238636;
+  border: none;
+  border-radius: 16px;
+  padding: 16px 32px;
+  font-weight: 700;
+  font-size: 1.2rem;
+  color: #f0f6fc;
+  cursor: pointer;
+  box-shadow:
+    0 0 10px #238636aa;
+  transition: background 0.3s ease, transform 0.25s ease;
+  user-select: none;
+  font-family: 'Poppins', sans-serif;
+}
+
+.input-section button:hover {
+  background: #2ea043;
+  transform: scale(1.05);
+  box-shadow:
+    0 0 20px #2ea043cc;
+}
+
+/* Task List */
+ul.todo-list {
+  list-style: none;
+  max-height: 380px;
+  overflow-y: auto;
+  padding-right: 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+/* Scrollbar */
+ul.todo-list::-webkit-scrollbar {
+  width: 8px;
+}
+
+ul.todo-list::-webkit-scrollbar-thumb {
+  background: #238636cc;
+  border-radius: 20px;
+  box-shadow: inset 0 0 6px #1b6e2f;
+}
+
+/* Task Item Card */
+ul.todo-list li {
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 20px;
+  padding: 20px 24px;
+  box-shadow:
+    0 2px 6px rgba(35, 134, 54, 0.3);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  color: #c9d1d9;
+  font-weight: 600;
+  font-size: 1.18rem;
+  gap: 16px;
+  transition: background 0.3s ease, transform 0.2s ease;
+  user-select: text;
+}
+
+ul.todo-list li:hover {
+  background: rgba(35, 134, 54, 0.15);
+  transform: translateY(-3px);
+  box-shadow:
+    0 10px 20px rgba(35, 134, 54, 0.35);
+}
+
+ul.todo-list li.done {
+  text-decoration: line-through;
+  color: #6a9955aa;
+  background: rgba(35, 134, 54, 0.1);
+  box-shadow: none;
+  opacity: 0.7;
+}
+
+/* Task Text + Date Container */
+.task-text {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+/* Date Time Pill */
+.task-time {
+  font-weight: 600;
+  font-size: 0.9rem;
+  background: rgba(35, 134, 54, 0.25);
+  color: #bbf7d0;
+  align-self: flex-start;
+  padding: 6px 14px;
+  border-radius: 40px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  user-select: none;
+  font-family: 'Poppins', sans-serif;
+}
+
+/* Clock Icon */
+.task-time i {
+  font-size: 1.1rem;
+  color: #2ea043;
+  filter: drop-shadow(0 0 6px #2ea043aa);
+}
+
+/* Buttons Container */
+.todo-buttons {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+  user-select: none;
+}
+
+/* Buttons Icons */
+.todo-buttons i {
+  font-size: 1.4rem;
+  cursor: pointer;
+  transition: color 0.3s ease, transform 0.2s ease;
+  color: #238636cc;
+}
+
+.todo-buttons i:hover {
+  color: #2ea043;
+  transform: scale(1.2);
+  filter: drop-shadow(0 0 6px #2ea043cc);
+}
+
+.fa-check {
+  color: #2ea043cc;
+  filter: drop-shadow(0 0 6px #2ea043cc);
+}
+
+.fa-check:hover {
+  filter: drop-shadow(0 0 10px #2ea043ff);
+}
+
+.fa-trash {
+  color: #bb4444cc;
+  filter: drop-shadow(0 0 6px #bb4444cc);
+}
+
+.fa-trash:hover {
+  filter: drop-shadow(0 0 10px #bb4444ff);
+}
+
+/* Responsive */
+@media (max-width: 480px) {
+  .input-section {
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  ul.todo-list li {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .todo-buttons {
+    width: 100%;
+    justify-content: flex-start;
+  }
+}
