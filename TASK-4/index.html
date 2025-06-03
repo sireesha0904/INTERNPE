@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Connect 4 - Home</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <h1>Connect 4</h1>
+  <form id="startForm">
+    <label for="mode">Select Mode:</label>
+    <div class="mode-group">
+      <label><input type="radio" name="mode" value="2player" checked /> 2 Players</label>
+      <label><input type="radio" name="mode" value="computer" /> Vs Computer</label>
+    </div>
+
+    <label for="player1">Player 1 Name:</label>
+    <input type="text" id="player1" name="player1" placeholder="Player 1" required />
+
+    <label for="player2">Player 2 Name:</label>
+    <input type="text" id="player2" name="player2" placeholder="Player 2" required />
+
+    <button type="submit">Start Game</button>
+  </form>
+
+  <script>
+    const modeRadios = document.querySelectorAll('input[name="mode"]');
+    const player2Input = document.getElementById('player2');
+
+    // Disable Player 2 input if vs computer
+    modeRadios.forEach(radio => {
+      radio.addEventListener('change', e => {
+        if(e.target.value === 'computer') {
+          player2Input.value = 'Computer';
+          player2Input.disabled = true;
+        } else {
+          player2Input.disabled = false;
+          player2Input.value = '';
+        }
+      });
+    });
+
+    // On submit, redirect to game.html with params
+    document.getElementById('startForm').addEventListener('submit', e => {
+      e.preventDefault();
+      const mode = document.querySelector('input[name="mode"]:checked').value;
+      const p1 = encodeURIComponent(document.getElementById('player1').value.trim());
+      const p2 = encodeURIComponent(document.getElementById('player2').value.trim());
+      if (!p1 || !p2) {
+        alert('Please enter player names!');
+        return;
+      }
+      window.location.href = `game.html?mode=${mode}&p1=${p1}&p2=${p2}`;
+    });
+  </script>
+</body>
+</html>
