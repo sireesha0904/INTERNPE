@@ -1,258 +1,184 @@
-/* === General Reset === */
+/* General Reset and Body Setup */
 * {
-    margin: 0;
-    padding: 0;
     box-sizing: border-box;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  }
-  
-  body {
-    min-height: 100vh;
-    background: linear-gradient(135deg, #2e003e, #4b0082);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    color: #fff;
-    padding: 2rem;
-  }
-  
-  /* === Result Container === */
-  #result-container {
-    background: rgba(255, 255, 255, 0.07);
-    padding: 3rem 2rem;
-    border-radius: 20px;
-    text-align: center;
-    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.4);
-    backdrop-filter: blur(12px);
-    max-width: 500px;
-    width: 100%;
-    animation: fadeIn 0.6s ease-out;
-  }
-  
-  /* === Result Message === */
-  #resultMsg {
-    font-size: 2.5rem;
-    font-weight: 900;
-    margin-bottom: 2.5rem;
-    color: #ffd700;
-    text-shadow:
-      0 0 8px #ffd700,
-      0 0 12px #ff8c00,
-      0 0 20px #ff8c00;
-  }
-  
-  /* === Buttons === */
-  #playAgainBtn,
-  #homeBtn {
-    background: #7a1cac;
-    color: white;
-    font-weight: bold;
-    border: none;
-    border-radius: 30px;
-    padding: 0.8rem 2rem;
-    margin: 0 1rem;
-    font-size: 1.1rem;
-    cursor: pointer;
-    box-shadow: 0 5px 15px rgba(122, 28, 172, 0.5);
-    transition: background 0.3s, transform 0.2s;
-  }
-  
-  #playAgainBtn:hover,
-  #homeBtn:hover {
-    background: #a45de9;
-    transform: scale(1.05);
-  }
-  
-  /* === Responsive === */
-  @media (max-width: 500px) {
-    #playAgainBtn,
-    #homeBtn {
-      margin: 0.5rem 0;
-      width: 100%;
-    }
-  }
-  
-  /* === Animation === */
-  @keyframes fadeIn {
-    from {
-      opacity: 0;
-      transform: translateY(30px);
-    }
-    to {
-      opacity: 1;
-      transform: translateY(0);
-    }
-  }
-  
-
-  /* === General === */
-body {
     margin: 0;
     padding: 0;
+  }
+  
+  html, body {
+    height: 100%;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background: linear-gradient(to bottom right, #2e003e, #4b0082);
+    overflow: hidden;
+    background: linear-gradient(to bottom, #001f3f, #0074D9);
     color: #fff;
+  }
+  
+  /* Center Content */
+  body {
     display: flex;
     flex-direction: column;
-    align-items: center;
     justify-content: center;
-    min-height: 100vh;
+    align-items: center;
     text-align: center;
-    padding: 2rem;
   }
   
-  /* === Heading === */
+  /* Home Page (index.html) */
   h1 {
-    font-size: 3rem;
-    margin-bottom: 2rem;
-    color: #ffd700;
-    text-shadow: 0 0 10px #ff8c00;
-  }
-  
-  /* === Mode Selection === */
-  div {
-    margin-bottom: 1.5rem;
+    margin-bottom: 20px;
+    font-size: 2.5rem;
+    color: #FFDC00;
+    text-shadow: 2px 2px 4px #000;
   }
   
   label {
-    display: block;
-    margin: 0.5rem auto;
-    font-size: 1.2rem;
-  }
-  
-  /* === Input Styles === */
-  input[type="text"] {
-    padding: 0.6rem 1rem;
-    border-radius: 10px;
-    border: none;
-    width: 250px;
-    margin-top: 0.3rem;
-    font-size: 1rem;
-    outline: none;
-    background-color: #fff;
-    color: #333;
-  }
-  
-  input[type="radio"] {
-    margin-right: 0.4rem;
-  }
-  
-  /* === Buttons === */
-  #startBtn {
-    padding: 0.8rem 2rem;
-    background-color: #7a1cac;
-    color: #fff;
     font-size: 1.1rem;
+    margin: 10px;
+    display: block;
+  }
+  
+  input[type="text"] {
+    padding: 8px;
+    border-radius: 8px;
+    border: none;
+    margin-left: 10px;
+  }
+  
+  #startBtn {
+    margin-top: 20px;
+    padding: 10px 20px;
+    background-color: #2ECC40;
+    color: white;
+    font-size: 1rem;
     font-weight: bold;
     border: none;
-    border-radius: 30px;
+    border-radius: 10px;
     cursor: pointer;
-    box-shadow: 0 5px 20px rgba(122, 28, 172, 0.4);
-    transition: background-color 0.3s ease, transform 0.2s;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
   }
   
   #startBtn:hover {
-    background-color: #a45de9;
-    transform: scale(1.05);
+    background-color: #28a745;
   }
   
-  /* === Responsive === */
-  @media (max-width: 500px) {
-    input[type="text"] {
-      width: 90%;
-    }
-  
-    #startBtn {
-      width: 90%;
-    }
-  }
-
-
-  
-  h2#status {
-    font-size: 1.8rem;
-    margin-bottom: 1.5rem;
-    color: #ffd700;
-    text-shadow: 0 0 10px #ffa500;
+  /* Game Page (game.html) */
+  #status {
+    font-size: 1.3rem;
+    margin-bottom: 10px;
+    color: #FFDC00;
+    text-shadow: 1px 1px 2px #000;
   }
   
-  /* === Game Board === */
   #board {
     display: grid;
-    grid-template-columns: repeat(7, 60px);
-    grid-template-rows: repeat(6, 60px);
+    grid-template-columns: repeat(7, 1fr);
     gap: 5px;
-    background-color: #240046;
+    width: 90vw;
+    max-width: 600px;
+    aspect-ratio: calc(7 / 6);
+    background-color: #003366;
     padding: 10px;
-    border-radius: 10px;
-    box-shadow: 0 0 20px rgba(255, 255, 255, 0.1);
+    border-radius: 15px;
+    box-shadow: 0 0 15px rgba(255, 255, 255, 0.2);
   }
   
   .cell {
-    width: 60px;
-    height: 60px;
-    background-color: #eee;
+    width: 100%;
+    aspect-ratio: 1/1;
+    background-color: #7FDBFF;
     border-radius: 50%;
-    transition: transform 0.2s ease, background-color 0.3s ease;
+    box-shadow: inset 0 0 10px #000;
+    transition: background-color 0.3s ease, transform 0.2s ease;
     cursor: pointer;
-    box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.2);
+  }
+  
+  .cell.player1 {
+    background-color: #FF4136;
+  }
+  
+  .cell.player2 {
+    background-color: #2ECC40;
   }
   
   .cell:hover {
-    transform: scale(1.1);
-    background-color: #dcdcdc;
-  }
-  
-  /* === Player Colors === */
-  .player1 {
-    background-color: #ff3b3f; /* Red */
-    box-shadow: 0 0 12px #ff3b3f;
-  }
-  
-  .player2 {
-    background-color: #00d26a; /* Green */
-    box-shadow: 0 0 12px #00d26a;
-  }
-  
-  /* === Restart Button === */
-  #restartBtn {
-    margin-top: 2rem;
-    padding: 0.8rem 2rem;
-    background: linear-gradient(135deg, #7a1cac, #d41872);
-    border: none;
-    border-radius: 30px;
-    color: white;
-    font-size: 1.1rem;
-    font-weight: bold;
-    cursor: pointer;
-    box-shadow: 0 4px 15px rgba(122, 28, 172, 0.5);
-    transition: all 0.3s ease;
-  }
-  
-  #restartBtn:hover {
-    background: linear-gradient(135deg, #9b59b6, #e83e8c);
     transform: scale(1.05);
   }
   
-  /* === Responsive Design === */
+  #restartBtn {
+    margin-top: 20px;
+    padding: 10px 20px;
+    background-color: #FF851B;
+    color: white;
+    font-size: 1rem;
+    font-weight: bold;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+  }
+  
+  #restartBtn:hover {
+    background-color: #ff9f40;
+  }
+  
+  /* Result Page (result.html) */
+  #result-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+  }
+  
+  #resultMsg {
+    font-size: 2rem;
+    margin-bottom: 30px;
+    color: #FFDC00;
+    text-shadow: 2px 2px 5px #000;
+  }
+  
+  #playAgainBtn, #homeBtn {
+    margin: 10px;
+    padding: 12px 24px;
+    border: none;
+    border-radius: 10px;
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+    transition: background-color 0.3s ease;
+  }
+  
+  #playAgainBtn {
+    background-color: #2ECC40;
+    color: white;
+  }
+  
+  #playAgainBtn:hover {
+    background-color: #28a745;
+  }
+  
+  #homeBtn {
+    background-color: #0074D9;
+    color: white;
+  }
+  
+  #homeBtn:hover {
+    background-color: #005fa3;
+  }
+  
+  /* Responsive font sizing */
   @media (max-width: 500px) {
-    #board {
-      grid-template-columns: repeat(7, 40px);
-      grid-template-rows: repeat(6, 40px);
-      gap: 4px;
+    h1 {
+      font-size: 2rem;
     }
   
-    .cell {
-      width: 40px;
-      height: 40px;
+    #status, #resultMsg {
+      font-size: 1.2rem;
     }
   
-    #restartBtn {
-      width: 90%;
-    }
-  
-    h2#status {
-      font-size: 1.3rem;
+    #startBtn, #restartBtn, #playAgainBtn, #homeBtn {
+      padding: 8px 16px;
+      font-size: 0.9rem;
     }
   }
   
