@@ -1,89 +1,43 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Connect 4 - Result</title>
-  <link rel="stylesheet" href="style.css" />
-  <style>
-    body {
-      background: linear-gradient(135deg, #6a11cb, #2575fc);
-      color: white;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      height: 100vh;
-      margin: 0;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      user-select: none;
-      padding: 20px;
-      text-align: center;
-    }
-
-    h1 {
-      font-size: 3rem;
-      margin-bottom: 10px;
-      text-shadow: 0 0 10px rgba(255,255,255,0.7);
-    }
-
-    p {
-      font-size: 1.5rem;
-      margin-bottom: 30px;
-      font-weight: 600;
-      text-shadow: 0 0 5px rgba(0,0,0,0.3);
-    }
-
-    .btn-group {
-      display: flex;
-      gap: 20px;
-      flex-wrap: wrap;
-      justify-content: center;
-    }
-
-    button {
-      background: #ff3e6c;
-      border: none;
-      color: white;
-      font-size: 1.2rem;
-      font-weight: 700;
-      padding: 15px 35px;
-      border-radius: 30px;
-      cursor: pointer;
-      transition: background 0.3s ease;
-      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
-    }
-
-    button:hover {
-      background: #7b2ff7;
-      box-shadow: 0 6px 12px rgba(123,47,247,0.8);
-    }
-  </style>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Connect 4 - Results</title>
+<style>
+  body { font-family: sans-serif; text-align: center; padding: 2rem; }
+  h1 { font-size: 2rem; }
+  button {
+    margin: 1rem;
+    padding: 0.7rem 1.5rem;
+    font-size: 1.2rem;
+    cursor: pointer;
+  }
+</style>
 </head>
 <body>
-  <h1 id="resultTitle">Result</h1>
-  <p id="resultMsg">Loading...</p>
-  <div class="btn-group">
-    <button id="playAgainBtn">Play Again</button>
-    <button id="homeBtn">Home</button>
-  </div>
+  <h1 id="resultMsg"></h1>
+
+  <button id="playAgainBtn">Play Again</button>
+  <button id="homeBtn">Back to Home</button>
 
   <script>
-    // Result message is passed via URL param 'result'
-    const urlParams = new URLSearchParams(window.location.search);
-    const result = urlParams.get('result') || "Game Over";
+    const resultMsgEl = document.getElementById('resultMsg');
+    const playAgainBtn = document.getElementById('playAgainBtn');
+    const homeBtn = document.getElementById('homeBtn');
 
-    const resultMsg = document.getElementById('resultMsg');
-    resultMsg.textContent = result;
+    const resultMessage = sessionStorage.getItem('resultMessage') || "Game Over";
 
-    // Buttons functionality
-    document.getElementById('playAgainBtn').addEventListener('click', () => {
-      // Go back to game page without parameters to restart fresh
-      window.location.href = 'index.html';
+    resultMsgEl.textContent = resultMessage;
+
+    playAgainBtn.addEventListener('click', () => {
+      // Go to game page again with same players and mode
+      window.location.href = 'game.html';
     });
 
-    document.getElementById('homeBtn').addEventListener('click', () => {
-      // Go home page
+    homeBtn.addEventListener('click', () => {
+      // Clear sessionStorage and go back to index
+      sessionStorage.clear();
       window.location.href = 'index.html';
     });
   </script>

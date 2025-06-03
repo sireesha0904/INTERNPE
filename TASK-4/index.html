@@ -1,57 +1,68 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Connect 4 - Home</title>
-  <link rel="stylesheet" href="style.css" />
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Connect 4 - Welcome</title>
+<style>
+  body { font-family: sans-serif; display: flex; flex-direction: column; align-items: center; padding: 2rem; }
+  label { display: block; margin-top: 1rem; }
+  input[type=text] { padding: 0.5rem; width: 200px; }
+  button { margin-top: 1.5rem; padding: 0.7rem 1.5rem; font-size: 1rem; }
+</style>
 </head>
 <body>
-  <h1>Connect 4</h1>
-  <form id="startForm">
-    <label for="mode">Select Mode:</label>
-    <div class="mode-group">
-      <label><input type="radio" name="mode" value="2player" checked /> 2 Players</label>
-      <label><input type="radio" name="mode" value="computer" /> Vs Computer</label>
-    </div>
+  <h1>Welcome to Connect 4</h1>
 
-    <label for="player1">Player 1 Name:</label>
-    <input type="text" id="player1" name="player1" placeholder="Player 1" required />
+  <div>
+    <label><input type="radio" name="mode" value="pvp" checked /> Player vs Player</label>
+    <label><input type="radio" name="mode" value="pvc" /> Player vs Computer</label>
+  </div>
 
-    <label for="player2">Player 2 Name:</label>
-    <input type="text" id="player2" name="player2" placeholder="Player 2" required />
+  <div id="player-inputs">
+    <label>
+      Player 1 Name:
+      <input type="text" id="player1" placeholder="Player 1" />
+    </label>
+    <label id="player2-label">
+      Player 2 Name:
+      <input type="text" id="player2" placeholder="Player 2" />
+    </label>
+  </div>
 
-    <button type="submit">Start Game</button>
-  </form>
+  <button id="startBtn">Start Game</button>
 
   <script>
     const modeRadios = document.querySelectorAll('input[name="mode"]');
+    const player2Label = document.getElementById('player2-label');
     const player2Input = document.getElementById('player2');
+    const startBtn = document.getElementById('startBtn');
 
-    // Disable Player 2 input if vs computer
+    // Toggle player 2 input for PvC mode
     modeRadios.forEach(radio => {
-      radio.addEventListener('change', e => {
-        if(e.target.value === 'computer') {
+      radio.addEventListener('change', () => {
+        if (radio.value === 'pvc' && radio.checked) {
+          player2Label.style.display = 'none';
           player2Input.value = 'Computer';
-          player2Input.disabled = true;
         } else {
-          player2Input.disabled = false;
+          player2Label.style.display = 'block';
           player2Input.value = '';
         }
       });
     });
 
-    // On submit, redirect to game.html with params
-    document.getElementById('startForm').addEventListener('submit', e => {
-      e.preventDefault();
+    startBtn.addEventListener('click', () => {
       const mode = document.querySelector('input[name="mode"]:checked').value;
-      const p1 = encodeURIComponent(document.getElementById('player1').value.trim());
-      const p2 = encodeURIComponent(document.getElementById('player2').value.trim());
-      if (!p1 || !p2) {
-        alert('Please enter player names!');
-        return;
-      }
-      window.location.href = `game.html?mode=${mode}&p1=${p1}&p2=${p2}`;
+      const player1 = document.getElementById('player1').value.trim() || 'Player 1';
+      const player2 = mode === 'pvp' ? (document.getElementById('player2').value.trim() || 'Player 2') : 'Computer';
+
+      // Save data to sessionStorage for use in game page
+      sessionStorage.setItem('mode', mode);
+      sessionStorage.setItem('player1', player1);
+      sessionStorage.setItem('player2', player2);
+
+      // Navigate to game page
+      window.location.href = 'game.html';
     });
   </script>
 </body>

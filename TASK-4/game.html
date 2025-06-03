@@ -1,285 +1,198 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Connect 4 - Game</title>
-  <link rel="stylesheet" href="style.css" />
-  <style>
-    /* Additional styles specific to game page */
-    body {
-      background: linear-gradient(135deg, #2c3e50, #3498db);
-      color: white;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      padding: 20px;
-      min-height: 100vh;
-    }
-
-    h2 {
-      margin-top: 0;
-      font-weight: 600;
-      font-size: 2.5rem;
-      text-shadow: 0 0 5px rgba(255,255,255,0.3);
-      margin-bottom: 15px;
-      text-align: center;
-      user-select: none;
-    }
-
-    #board {
-      display: grid;
-      grid-template-columns: repeat(7, 60px);
-      grid-template-rows: repeat(6, 60px);
-      gap: 8px;
-      background: #1a237e;
-      border-radius: 15px;
-      padding: 15px;
-      box-shadow: 0 0 25px rgba(255,255,255,0.1);
-      user-select: none;
-    }
-
-    .cell {
-      width: 60px;
-      height: 60px;
-      border-radius: 50%;
-      background: #3949ab;
-      box-shadow: inset 0 4px 7px rgba(0,0,0,0.3);
-      cursor: pointer;
-      position: relative;
-      transition: background 0.3s;
-    }
-
-    .cell:hover {
-      background: #5c6bc0;
-    }
-
-    .cell.red {
-      background: radial-gradient(circle at center, #ff3e3e 40%, #b22222 90%);
-      box-shadow: 0 0 10px #ff4c4c;
-    }
-
-    .cell.yellow {
-      background: radial-gradient(circle at center, #ffec3d 40%, #b2a600 90%);
-      box-shadow: 0 0 10px #fff94d;
-    }
-
-    #currentTurn {
-      font-size: 1.5rem;
-      font-weight: 600;
-      margin: 20px 0;
-      user-select: none;
-    }
-
-    #restartBtn {
-      margin-top: 25px;
-      padding: 12px 30px;
-      border: none;
-      background: #f107a3;
-      color: white;
-      font-size: 1.1rem;
-      font-weight: 600;
-      border-radius: 25px;
-      cursor: pointer;
-      transition: background 0.3s ease;
-    }
-
-    #restartBtn:hover {
-      background: #7b2ff7;
-    }
-
-    #info {
-      font-weight: 600;
-      margin-top: 15px;
-      min-height: 1.5rem;
-      text-align: center;
-      user-select: none;
-    }
-
-    /* Mobile responsive */
-    @media (max-width: 480px) {
-      #board {
-        grid-template-columns: repeat(7, 45px);
-        grid-template-rows: repeat(6, 45px);
-        gap: 6px;
-        padding: 10px;
-      }
-      .cell {
-        width: 45px;
-        height: 45px;
-      }
-    }
-  </style>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Connect 4 - Game</title>
+<style>
+  body { font-family: sans-serif; text-align: center; padding: 1rem; background: #f0f0f0; }
+  #board { 
+    display: grid; 
+    grid-template-columns: repeat(7, 50px); 
+    grid-template-rows: repeat(6, 50px); 
+    gap: 5px; 
+    justify-content: center;
+    margin: 1rem auto;
+  }
+  .cell {
+    width: 50px; height: 50px;
+    background: #ddd;
+    border-radius: 50%;
+    cursor: pointer;
+    box-shadow: inset 0 0 5px #999;
+  }
+  .player1 { background: red; }
+  .player2 { background: green; }
+  #status {
+    font-size: 1.2rem;
+    margin-top: 1rem;
+  }
+  #restartBtn {
+    margin-top: 1rem;
+    padding: 0.6rem 1.2rem;
+    font-size: 1rem;
+  }
+</style>
 </head>
 <body>
-  <h2>Connect 4</h2>
-  <div id="currentTurn"></div>
-  <div id="board"></div>
-  <button id="restartBtn">Restart Game</button>
-  <div id="info"></div>
 
-  <script>
-    // Parse URL params for mode and player names
-    const urlParams = new URLSearchParams(window.location.search);
-    const mode = urlParams.get('mode') || '2player';
-    const player1Name = urlParams.get('p1') || 'Player 1';
-    const player2Name = urlParams.get('p2') || (mode === 'computer' ? 'Computer' : 'Player 2');
+<h2 id="status"></h2>
+<div id="board"></div>
+<button id="restartBtn">Restart</button>
 
-    // Game constants
-    const ROWS = 6;
-    const COLS = 7;
+<script>
+  const ROWS = 6, COLS = 7;
+  let board = [];
+  let currentPlayer = 1;
+  let gameOver = false;
 
-    // Game state: 0 = empty, 1 = player1, 2 = player2/computer
-    let board = Array(ROWS).fill(null).map(() => Array(COLS).fill(0));
-    let currentPlayer = 1;
-    let gameOver = false;
+  const boardEl = document.getElementById('board');
+  const statusEl = document.getElementById('status');
+  const restartBtn = document.getElementById('restartBtn');
 
-    const boardEl = document.getElementById('board');
-    const currentTurnEl = document.getElementById('currentTurn');
-    const infoEl = document.getElementById('info');
-    const restartBtn = document.getElementById('restartBtn');
+  // Retrieve player names and mode from sessionStorage
+  const player1Name = sessionStorage.getItem('player1') || 'Player 1';
+  const player2Name = sessionStorage.getItem('player2') || 'Player 2';
+  const vsComputer = sessionStorage.getItem('mode') === 'pvc';
 
-    // Update UI for current turn
-    function updateTurnText() {
-      if (gameOver) return;
-      const name = currentPlayer === 1 ? player1Name : player2Name;
-      const color = currentPlayer === 1 ? 'red' : 'yellow';
-      currentTurnEl.innerHTML = `<span style="color:${color}">${name}'s Turn</span>`;
-    }
+  function initBoard() {
+    board = Array(ROWS).fill().map(() => Array(COLS).fill(0));
+  }
 
-    // Create board UI
-    function createBoard() {
-      boardEl.innerHTML = '';
-      for(let r=0; r<ROWS; r++) {
-        for(let c=0; c<COLS; c++) {
-          const cell = document.createElement('div');
-          cell.classList.add('cell');
-          cell.dataset.row = r;
-          cell.dataset.col = c;
-          cell.addEventListener('click', () => {
-            if(gameOver) return;
-            if(currentPlayer === 2 && mode === 'computer') return; // disable clicks on computer turn
-            makeMove(c);
-          });
-          boardEl.appendChild(cell);
-        }
-      }
-      updateBoardUI();
-    }
-
-    // Update board UI colors based on board state
-    function updateBoardUI() {
-      for(let r=0; r<ROWS; r++) {
-        for(let c=0; c<COLS; c++) {
-          const cell = boardEl.querySelector(`.cell[data-row="${r}"][data-col="${c}"]`);
-          cell.classList.remove('red', 'yellow');
-          if(board[r][c] === 1) cell.classList.add('red');
-          else if(board[r][c] === 2) cell.classList.add('yellow');
-        }
+  function createBoardUI() {
+    boardEl.innerHTML = '';
+    for (let r = 0; r < ROWS; r++) {
+      for (let c = 0; c < COLS; c++) {
+        const cell = document.createElement('div');
+        cell.classList.add('cell');
+        cell.dataset.row = r;
+        cell.dataset.col = c;
+        cell.addEventListener('click', () => handleClick(c));
+        boardEl.appendChild(cell);
       }
     }
+  }
 
-    // Drop piece in selected column
-    function makeMove(col) {
-      for(let r = ROWS - 1; r >= 0; r--) {
-        if(board[r][col] === 0) {
-          board[r][col] = currentPlayer;
-          updateBoardUI();
-          if(checkWin(r, col, currentPlayer)) {
-            gameOver = true;
-            infoEl.textContent = `${currentPlayer === 1 ? player1Name : player2Name} Wins! 🎉`;
-            currentTurnEl.textContent = '';
-            return;
-          }
-          if(isBoardFull()) {
-            gameOver = true;
-            infoEl.textContent = `It's a Draw!`;
-            currentTurnEl.textContent = '';
-            return;
-          }
-          switchPlayer();
-          updateTurnText();
-          if(currentPlayer === 2 && mode === 'computer') {
-            setTimeout(computerMove, 700);
-          }
+  function handleClick(col) {
+    if (gameOver) return;
+
+    for (let r = ROWS - 1; r >= 0; r--) {
+      if (board[r][col] === 0) {
+        board[r][col] = currentPlayer;
+        updateBoardUI();
+
+        if (checkWin(r, col, currentPlayer)) {
+          endGame(`${getPlayerName(currentPlayer)} wins! 🎉`);
           return;
         }
-      }
-      // If column full
-      infoEl.textContent = 'This column is full. Try another.';
-      setTimeout(() => infoEl.textContent = '', 1500);
-    }
-
-    // Switch player
-    function switchPlayer() {
-      currentPlayer = currentPlayer === 1 ? 2 : 1;
-      infoEl.textContent = '';
-    }
-
-    // Check if board full
-    function isBoardFull() {
-      return board.every(row => row.every(cell => cell !== 0));
-    }
-
-    // Check win conditions: horizontal, vertical, diagonal
-    function checkWin(row, col, player) {
-      function countDir(rStep, cStep) {
-        let count = 0;
-        let r = row + rStep;
-        let c = col + cStep;
-        while(r >= 0 && r < ROWS && c >= 0 && c < COLS && board[r][c] === player) {
-          count++;
-          r += rStep;
-          c += cStep;
+        if (checkDraw()) {
+          endGame(`It's a draw!`);
+          return;
         }
-        return count;
-      }
-      // Check all directions
-      let total;
-      // Horizontal
-      total = 1 + countDir(0,1) + countDir(0,-1);
-      if(total >= 4) return true;
-      // Vertical
-      total = 1 + countDir(1,0) + countDir(-1,0);
-      if(total >= 4) return true;
-      // Diagonal /
-      total = 1 + countDir(-1,1) + countDir(1,-1);
-      if(total >= 4) return true;
-      // Diagonal \
-      total = 1 + countDir(1,1) + countDir(-1,-1);
-      if(total >= 4) return true;
 
-      return false;
+        currentPlayer = currentPlayer === 1 ? 2 : 1;
+        updateStatus();
+
+        if (vsComputer && currentPlayer === 2 && !gameOver) {
+          setTimeout(computerMove, 600);
+        }
+
+        return;
+      }
+    }
+  }
+
+  function updateBoardUI() {
+    for (let r = 0; r < ROWS; r++) {
+      for (let c = 0; c < COLS; c++) {
+        const idx = r * COLS + c;
+        const cell = boardEl.children[idx];
+        cell.classList.remove('player1', 'player2');
+        if (board[r][c] === 1) cell.classList.add('player1');
+        else if (board[r][c] === 2) cell.classList.add('player2');
+      }
+    }
+  }
+
+  function checkWin(row, col, player) {
+    return (
+      checkDirection(row, col, player, 0, 1) ||
+      checkDirection(row, col, player, 1, 0) ||
+      checkDirection(row, col, player, 1, 1) ||
+      checkDirection(row, col, player, 1, -1)
+    );
+  }
+
+  function checkDirection(row, col, player, deltaRow, deltaCol) {
+    let count = 1;
+    let r = row + deltaRow;
+    let c = col + deltaCol;
+    while (r >= 0 && r < ROWS && c >= 0 && c < COLS && board[r][c] === player) {
+      count++;
+      r += deltaRow;
+      c += deltaCol;
+    }
+    r = row - deltaRow;
+    c = col - deltaCol;
+    while (r >= 0 && r < ROWS && c >= 0 && c < COLS && board[r][c] === player) {
+      count++;
+      r -= deltaRow;
+      c -= deltaCol;
+    }
+    return count >= 4;
+  }
+
+  function checkDraw() {
+    return board.every(row => row.every(cell => cell !== 0));
+  }
+
+  function updateStatus() {
+    statusEl.textContent = `${getPlayerName(currentPlayer)}'s turn (${currentPlayer === 1 ? '🔴' : '🟢'})`;
+  }
+
+  function getPlayerName(player) {
+    return player === 1 ? player1Name : player2Name;
+  }
+
+  function endGame(message) {
+    statusEl.textContent = message;
+    gameOver = true;
+
+    // Save result in sessionStorage for result page
+    sessionStorage.setItem('resultMessage', message);
+
+    // After 2 seconds, navigate to results page
+    setTimeout(() => {
+      window.location.href = 'result.html';
+    }, 2000);
+  }
+
+  function computerMove() {
+    if (gameOver) return;
+
+    const availableCols = [];
+    for (let c = 0; c < COLS; c++) {
+      if (board[0][c] === 0) availableCols.push(c);
     }
 
-    // Computer random move
-    function computerMove() {
-      if(gameOver) return;
-      let validCols = [];
-      for(let c=0; c<COLS; c++) {
-        if(board[0][c] === 0) validCols.push(c);
-      }
-      if(validCols.length === 0) return;
+    if (availableCols.length === 0) return;
 
-      // Simple random move
-      const choice = validCols[Math.floor(Math.random() * validCols.length)];
-      makeMove(choice);
-    }
+    const choice = availableCols[Math.floor(Math.random() * availableCols.length)];
+    handleClick(choice);
+  }
 
-    // Restart game
-    restartBtn.addEventListener('click', () => {
-      board = Array(ROWS).fill(null).map(() => Array(COLS).fill(0));
-      currentPlayer = 1;
-      gameOver = false;
-      infoEl.textContent = '';
-      updateTurnText();
-      updateBoardUI();
-    });
+  restartBtn.addEventListener('click', () => {
+    initBoard();
+    createBoardUI();
+    currentPlayer = 1;
+    gameOver = false;
+    updateStatus();
+  });
 
-    // Init
-    createBoard();
-    updateTurnText();
-
-  </script>
+  // Initialize game
+  initBoard();
+  createBoardUI();
+  updateStatus();
+</script>
 </body>
 </html>
