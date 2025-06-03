@@ -8,30 +8,31 @@
 
 </head>
 <body>
-  <h1 id="resultMsg"></h1>
-
-  <button id="playAgainBtn">Play Again</button>
-  <button id="homeBtn">Back to Home</button>
-
-  <script>
-    const resultMsgEl = document.getElementById('resultMsg');
-    const playAgainBtn = document.getElementById('playAgainBtn');
-    const homeBtn = document.getElementById('homeBtn');
-
-    const resultMessage = sessionStorage.getItem('resultMessage') || "Game Over";
-
-    resultMsgEl.textContent = resultMessage;
-
-    playAgainBtn.addEventListener('click', () => {
-      // Go to game page again with same players and mode
-      window.location.href = 'game.html';
-    });
-
-    homeBtn.addEventListener('click', () => {
-      // Clear sessionStorage and go back to index
-      sessionStorage.clear();
-      window.location.href = 'index.html';
-    });
-  </script>
-</body>
+    <div id="result-container">
+      <h1 id="resultMsg"></h1>
+      <div>
+        <button id="playAgainBtn">Play Again</button>
+        <button id="homeBtn">Back to Home</button>
+      </div>
+    </div>
+  
+    <script>
+      const resultMsgEl = document.getElementById('resultMsg');
+      const playAgainBtn = document.getElementById('playAgainBtn');
+      const homeBtn = document.getElementById('homeBtn');
+  
+      const resultMessage = sessionStorage.getItem('resultMessage') || "Game Over";
+      resultMsgEl.textContent = resultMessage;
+  
+      playAgainBtn.addEventListener('click', () => {
+        window.location.href = 'game.html';
+      });
+  
+      homeBtn.addEventListener('click', () => {
+        sessionStorage.clear();
+        window.location.href = 'index.html';
+      });
+    </script>
+  </body>
+  
 </html>
